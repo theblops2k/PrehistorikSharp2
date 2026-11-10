@@ -158,7 +158,7 @@ Requiere **.NET 10 SDK** en Windows (el launcher usa el diálogo de carpetas de
 WinForms).
 
 ```powershell
-cd port\Pre2Port
+cd src
 dotnet build -c Release
 dotnet run -c Release
 ```
@@ -166,7 +166,7 @@ dotnet run -c Release
 El ejecutable queda en:
 
 ```text
-port\Pre2Port\bin\Release\net10.0\
+src\bin\Release\net10.0\
 ```
 
 Para distribuir, copiá **la carpeta completa** (el `.exe` necesita el `.dll`,
@@ -178,19 +178,6 @@ Publicación autocontenida opcional:
 dotnet publish -c Release -r win-x64 --self-contained true
 ```
 
----
-
-## Verificación
-
-El proyecto incluye comandos de consola para comprobar los decodificadores y las
-tablas recuperadas contra las referencias del port original:
-
-```powershell
-dotnet run -c Release -- verify-sqz ..\..\Original ..\..\Sources\pre2_stage1_hashes.txt
-dotnet run -c Release -- verify-boot ..\..\work\boot_image.bin
-dotnet run -c Release -- verify-tables ..\..\work\boot_image.bin ..\..\work\asset_tables_ref.txt
-dotnet run -c Release -- options-test ..\..\work\cfg
-``
 ---
 
 ## Registro de errores
@@ -266,7 +253,7 @@ si todo funciona.
 ## Estructura del proyecto
 
 ```text
-port/Pre2Port/
+src/
 ├── Codecs/        Descompresores .SQZ / .TRK (LZSS, LZW, Huffman+RLE)
 ├── Native/        Imagen de arranque, tablas, VGA y estado de nivel
 ├── Recovered/     Lógica recuperada: jugador, objetos, render, audio, jefes
